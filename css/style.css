@@ -418,3 +418,6 @@ body.about-page .site-backdrop-image,body.services-page .site-backdrop-image,bod
 .work-index .work-heading{font-family:var(--site-type);font-style:normal;font-weight:600;text-transform:uppercase;letter-spacing:.2em;font-size:clamp(22px,2.3vw,34px);line-height:1.15;color:#f8f7f3}
 .work-title{gap:12px}
 .work-index .work-heading{color:#e8c396}
+/* Trabalhos: título idêntico à frase ao lado (mesma fonte, tamanho, cor e espaçamento) */
+.work-index .work-heading{font-family:var(--site-type);font-weight:400;font-size:12px;letter-spacing:.14em;line-height:1.6;text-transform:uppercase;color:#d9b384}
+@media(min-width:900px){.work-top{align-items:start}}
