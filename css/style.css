@@ -421,3 +421,5 @@ body.about-page .site-backdrop-image,body.services-page .site-backdrop-image,bod
 /* Trabalhos: título idêntico à frase ao lado (mesma fonte, tamanho, cor e espaçamento) */
 .work-index .work-heading{font-family:var(--site-type);font-weight:400;font-size:12px;letter-spacing:.14em;line-height:1.6;text-transform:uppercase;color:#d9b384}
 @media(min-width:900px){.work-top{align-items:start}}
+/* Trabalhos: caixa alta espaçada, maior, cor areia, sem "Portfólio" */
+.work-index .work-heading{font-weight:600;font-size:clamp(22px,2.3vw,34px);letter-spacing:.2em;line-height:1.15;color:#e8c396}
