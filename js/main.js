@@ -283,7 +283,7 @@ function applyLanguage(){
   const walker=document.createTreeWalker(document.querySelector('main'),NodeFilter.SHOW_TEXT);
   while(walker.nextNode())walker.currentNode.nodeValue=localized(walker.currentNode.nodeValue);
  }
- document.title=document.querySelector('main h1').innerText.replace(/\s+/g,' ')+' | Saulo Morais';
+ document.title=document.querySelector('main h1').textContent.replace(/\s+/g,' ')+' | Saulo Morais';
 }
 document.querySelector('.languages').addEventListener('click',event=>{
  const button=event.target.closest('[data-lang]');
@@ -397,7 +397,7 @@ function workIndex(){
  return '<section class="work-index">'+
   '<video class="work-film" muted loop playsinline preload="auto" poster="'+photos['film-22']+'"'+(still?'':' autoplay')+' aria-hidden="true"><source src="media/filme-22.mp4" type="video/mp4"></video>'+
   '<div class="work-shade" aria-hidden="true"></div><canvas class="work-dots" aria-hidden="true"></canvas>'+
-  '<div class="work-inner"><div class="work-top"><h1 class="work-heading">Trabalhos</h1><p class="work-hint tag">'+localized('Do projeto de um espaço à imagem que permite percorrê-lo. Explore por disciplina.')+'</p></div>'+
+  '<div class="work-inner"><div class="work-top"><div class="work-title"><span class="work-eyebrow">'+localized('Portfólio')+'</span><h1 class="work-heading">Trabalhos</h1></div><p class="work-hint tag">'+localized('Do projeto de um espaço à imagem que permite percorrê-lo. Explore por disciplina.')+'</p></div>'+
   '<ol class="work-list">'+items+'</ol></div>'+
 
   '</section>';
