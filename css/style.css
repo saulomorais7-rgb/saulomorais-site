@@ -424,3 +424,5 @@ body.about-page .site-backdrop-image,body.services-page .site-backdrop-image,bod
 /* Trabalhos: caixa alta espaçada, maior, cor areia, sem "Portfólio" */
 .work-index .work-heading{font-weight:600;font-size:clamp(22px,2.3vw,34px);letter-spacing:.2em;line-height:1.15;color:#e8c396}
 @media(min-width:900px){.work-top{align-items:last baseline}.work-title{align-self:last baseline}}
+/* Serviços, Sobre e Blog: título no mesmo estilo de "TRABALHOS" */
+body.services-page main h1,body.about-page main h1,body.blog-page main h1{font-family:var(--site-type);font-style:normal;font-weight:600;text-transform:uppercase;letter-spacing:.2em;font-size:clamp(22px,2.3vw,34px);line-height:1.15;color:#e8c396;margin:0 0 clamp(24px,4vw,48px)}
