@@ -16,7 +16,7 @@ const groups=['Projeto','Projeto','Archviz','Archviz','Archviz','Archviz','Archv
 const number=i=>String(i+1).padStart(2,'0');
 const chapters=[
  ['projeto','Projetos','Arquitetura e interiores',['arquitetura','interiores']],
- ['archviz','Archviz','Imagem, filme e interatividade',['externas','internas','plantas','filmes','master-plan','estandes','fotomontagem']],
+ ['archviz','Archviz','Imagens e filmes',['externas','internas','plantas','filmes','master-plan','estandes','fotomontagem']],
  ['modelagem','Modelagem','Edifícios e objetos',['modelagem-arquitetura','assets']]
 ];
 const index=()=>'<div class="montage">'+chapters.map(([id,title,label])=>'<a class="tile '+id+'" href="#'+id+'">'+photo(covers[id])+'<span class="tile-title"><small>'+label+'</small><strong>'+title+'</strong></span><span class="tile-arrow" aria-hidden="true">↗</span></a>').join('')+'</div>';
@@ -58,9 +58,18 @@ function setBackdrop(key){
  document.querySelector('.site-backdrop').innerHTML=photo(key,'site-backdrop-image','eager');
 }
 setBackdrop(12);
+// Filme de fundo: mostra a imagem parada (poster) até haver dados suficientes para tocar sem travar.
+// Online o filme chega aos poucos; tocar antes disso causa o "tranco" (para e recomeça).
+function smoothPlay(video){
+ if(!video)return;
+ video.muted=true;
+ const go=()=>{if(video.isConnected)video.play().catch(()=>{})};
+ if(video.readyState>=4)go();
+ else{video.addEventListener('canplaythrough',go,{once:true});if(video.networkState===0)video.load()}
+}
 function pageFilm(){
  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
- return '<video class="page-film" muted loop playsinline preload="auto" poster="'+photos['film-22']+'"'+(still?'':' autoplay')+' aria-hidden="true"><source src="media/filme-22.mp4" type="video/mp4"></video><div class="page-film-shade" aria-hidden="true"></div>';
+ return '<video class="page-film" muted loop playsinline preload="auto" poster="'+photos['film-22']+'"'+' aria-hidden="true"><source src="media/filme-22.mp4" type="video/mp4"></video><div class="page-film-shade" aria-hidden="true"></div>';
 }
 function filmGallery(title){
  const players=films.map(({src,poster},index)=>
@@ -201,7 +210,7 @@ const dictionary=new Map([
  ['Explorar trabalhos ','Explore work '],['Em breve','Coming soon'],['Pausar movimento','Pause motion'],['Retomar movimento','Resume motion'],['Arraste ou use as setas para trocar a imagem','Drag or use the arrow keys to change the image'],['Trabalhos','Work'],['← Voltar a Trabalhos','← Back to Work'],['Vista aérea urbana','Urban aerial view'],['← Voltar a Archviz','← Back to Archviz'],['Perspectiva externa','Exterior rendering'],['Perspectiva interna','Interior rendering'],['Imagem do acervo','Portfolio image'],['Perspectiva externa · imagem do acervo','Exterior rendering · portfolio image'],
 ['Projetos','Projects'],['Projetos ↗','Projects ↗'],['Sobre','About'],['Sobre ↗','About ↗'],['Serviços','Services'],['Voltar ao início ↑','Back to top ↑'],['Arquiteto e urbanista','Architect and urban planner'],
 ['Saulo Morais · Arquiteto e urbanista','Saulo Morais · Architect and urban planner'],['Arquitetura','Architecture'],['em cena.','in focus.'],['Explorar Projetos ↗','Explore Projects ↗'],['Ver cena ⤢','View scene ⤢'],['Acender a luz ☼','Lights on ☼'],['Apagar a luz ☾','Lights off ☾'],
-['01 / Estudo visual','01 / Visual study'],['Imagem conceitual gerada para o protótipo','Concept image generated for this prototype'],['01 / Portfólio','01 / Portfolio'],['Portfólio','Portfolio'],['Projeto','Design'],['Arquitetura e interiores','Architecture and interiors'],['Imagem, filme e interatividade','Images, film and interactivity'],['Modelagem','3D modeling'],['Edifícios e objetos','Buildings and objects'],['Movimento','Motion'],
+['01 / Estudo visual','01 / Visual study'],['Imagem conceitual gerada para o protótipo','Concept image generated for this prototype'],['01 / Portfólio','01 / Portfolio'],['Portfólio','Portfolio'],['Projeto','Design'],['Arquitetura e interiores','Architecture and interiors'],['Imagens e filmes','Images and films'],['Modelagem','3D modeling'],['Edifícios e objetos','Buildings and objects'],['Movimento','Motion'],
 ['Montagem conceitual · recortes da cena de abertura','Concept montage · crops from the opening scene'],['Imagens conceituais · acervo a selecionar','Concept images · portfolio selection pending'],['Estudo visual · imagem conceitual','Visual study · concept image'],['Fechar ×','Close ×'],
 ['Do projeto de um espaço à imagem que permite percorrê-lo. Explore por disciplina.','From designing a space to creating an image that lets you experience it. Explore by discipline.'],
 ['02 / Sobre mim','02 / About me'],['Sou Saulo Morais, arquiteto e urbanista. Trabalho com arquitetura, interiores e visualização 3D.','I’m Saulo Morais, an architect and urban planner working across architecture, interiors and 3D visualization.'],
@@ -233,7 +242,7 @@ const spanish=new Map(Object.entries({
  'Architect and urban planner':'Arquitecto y urbanista','Saulo Morais · Architect and urban planner':'Saulo Morais · Arquitecto y urbanista',
  'Architecture':'Arquitectura','in focus.':'en escena.','Explore Projects ↗':'Explorar proyectos ↗','View scene ⤢':'Ver escena ⤢','Lights on ☼':'Encender la luz ☼','Lights off ☾':'Apagar la luz ☾',
  '01 / Visual study':'01 / Estudio visual','Portfolio image':'Imagen del portafolio','Portfolio':'Portafolio','Design':'Diseño',
- 'Architecture and interiors':'Arquitectura e interiores','Images, film and interactivity':'Imágenes, película e interactividad','3D modeling':'Modelado 3D','Buildings and objects':'Edificios y objetos','Motion':'Movimiento',
+ 'Architecture and interiors':'Arquitectura e interiores','Images and films':'Imágenes y películas','3D modeling':'Modelado 3D','Buildings and objects':'Edificios y objetos','Motion':'Movimiento',
  'Close ×':'Cerrar ×','Exterior rendering · portfolio image':'Perspectiva exterior · imagen del portafolio','Urban aerial view':'Vista aérea urbana','← Back to Archviz':'← Volver a Archviz','← All projects':'← Todos los proyectos','Exterior rendering':'Perspectiva exterior','Interior rendering':'Perspectiva interior',
  'From designing a space to creating an image that lets you experience it. Explore by discipline.':'Del diseño de un espacio a la imagen que permite recorrerlo. Explora por disciplina.',
  'About me':'Sobre mí','I’m Saulo Morais, an architect and urban planner working across architecture, interiors and 3D visualization.':'Soy Saulo Morais, arquitecto y urbanista. Trabajo en arquitectura, interiores y visualización 3D.',
@@ -410,7 +419,7 @@ function workIndex(){
    '<span class="work-arrow" aria-hidden="true">↗</span></a></li>';
  }).join('');
  return '<section class="work-index">'+
-  '<video class="work-film" muted loop playsinline preload="auto" poster="'+photos['film-22']+'"'+(still?'':' autoplay')+' aria-hidden="true"><source src="media/filme-22.mp4" type="video/mp4"></video>'+
+  '<video class="work-film" muted loop playsinline preload="auto" poster="'+photos['film-22']+'"'+' aria-hidden="true"><source src="media/filme-22.mp4" type="video/mp4"></video>'+
   '<div class="work-shade" aria-hidden="true"></div><canvas class="work-dots" aria-hidden="true"></canvas>'+
   '<div class="work-inner"><div class="work-top"><div class="work-title"><h1 class="work-heading">Trabalhos</h1></div><p class="work-hint tag">'+localized('Do projeto de um espaço à imagem que permite percorrê-lo. Explore por disciplina.')+'</p></div>'+
   '<ol class="work-list">'+items+'</ol></div>'+
@@ -423,7 +432,7 @@ function initWorkIndex(){
  const stage=document.querySelector('main .work-index');
  if(!stage)return;
  const film=stage.querySelector('.work-film');
- if(film&&!motion.matches){film.muted=true;film.play().catch(()=>{})}
+ if(film&&!motion.matches)smoothPlay(film);
  const canvas=stage.querySelector('.work-dots'),ctx=canvas.getContext('2d');
  const float=stage.querySelector('.work-float'),floatIn=float&&float.querySelector('.work-float-in'),floatLabel=float&&float.querySelector('.work-float-label');
  const dpr=Math.min(devicePixelRatio||1,2),gap=30;
@@ -495,7 +504,7 @@ function initReel(autoplay){
  const state={clips,active:0,playing:false};
  reelState=state;
  function current(){return clips[state.active].querySelector('.reel-video')}
- function play(){const video=current();video.muted=true;video.play().catch(()=>{});state.playing=true}
+ function play(){smoothPlay(current());state.playing=true}
  function advance(){
   if(reelState!==state)return;
   const next=(state.active+1)%clips.length;
@@ -578,7 +587,7 @@ function navigate({shared=false}={}){
  viewer.querySelector('.viewer-close').textContent=localized('Fechar ×');
  initWorkIndex();
  const pageVideo=document.querySelector('main .page-film');
- if(pageVideo&&!motion.matches){pageVideo.muted=true;pageVideo.play().catch(()=>{})}
+ if(pageVideo&&!motion.matches)smoothPlay(pageVideo);
  initReel(!motion.matches);
  document.querySelectorAll('main .gallery-photo').forEach(image=>{image.tabIndex=0;image.setAttribute('role','button')});
  document.querySelectorAll('main .landing-kicker, main .tag, main .work-stage .tile-title small').forEach((element,index)=>setTimeout(()=>decode(element),index*120));
