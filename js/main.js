@@ -62,8 +62,8 @@ function setBackdrop(key){
  if(!box.firstChild||img.complete)swap();else{img.onload=img.onerror=swap;setTimeout(swap,1500)}
 }
 // Deixa as duas imagens de fundo já no cache do navegador.
-['film-22',12].forEach(k=>{const i=new Image();i.src=mini(photos[k])});
-setBackdrop(12);
+['film-22'].forEach(k=>{const i=new Image();i.src=mini(photos[k])});
+setBackdrop('film-22');
 // Filme de fundo: mostra a imagem parada (poster) até haver dados suficientes para tocar sem travar.
 // Online o filme chega aos poucos; tocar antes disso causa o "tranco" (para e recomeça).
 function smoothPlay(video){
@@ -153,7 +153,7 @@ function renderServices(){
   const [title,description] = entry[column];
   return '<li class="service-entry"><svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+entry[0]+'"/></svg><div><h2>'+title+'</h2><p>'+description+'</p></div></li>';
  }).join('');
- return pageFilm()+'<section class="wrap information-page"><h1>'+headings[language]+'</h1><ul class="service-list">'+rows+'</ul></section>';
+ return '<section class="wrap information-page"><h1>'+headings[language]+'</h1><ul class="service-list">'+rows+'</ul></section>';
 }
 const aboutText = {
  pt: ['Sobre', [
@@ -180,7 +180,7 @@ function renderAbout(){
 }
 
 function render(){
- const raw=location.hash.slice(1); const id=(raw==='trabalhos'?'projetos':raw)||'home'; document.body.classList.toggle('home',id==='home'); document.body.classList.toggle('work-page',id==='projetos'); document.body.classList.toggle('services-page',id==='servicos'); document.body.classList.toggle('about-page',id==='sobre'); document.body.classList.toggle('blog-page',id==='blog'); setBackdrop(id==='sobre'||id==='servicos'||id==='blog'?'film-22':12); document.body.classList.toggle('archviz-page',id==='archviz'); const i=work.findIndex(row=>row[0]===id);
+ const raw=location.hash.slice(1); const id=(raw==='trabalhos'?'projetos':raw)||'home'; document.body.classList.toggle('home',id==='home'); document.body.classList.toggle('work-page',id==='projetos'); document.body.classList.toggle('services-page',id==='servicos'); document.body.classList.toggle('about-page',id==='sobre'); document.body.classList.toggle('blog-page',id==='blog'); setBackdrop('film-22'); document.body.classList.toggle('archviz-page',id==='archviz'); const i=work.findIndex(row=>row[0]===id);
  const chapter=chapters.find(row=>row[0]===id); let page;
  if(id==='home') page='<section class="landing">'+landingFilm()+
   '<div class="landing-content"><p class="landing-kicker">Saulo Morais · Arquiteto e urbanista</p>'+
