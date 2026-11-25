@@ -1,6 +1,8 @@
 // Acervo migrado do Wix (gerado automaticamente a partir de img/wix/indice.txt).
 // Para mover uma imagem de categoria, mude a chave aqui. '_fora' e '_marketing' não aparecem no portfólio.
 window.WIX_ACERVO = {
+  "w1": ["externas", "img/wix/2026-11-06_92_3727ecc9.jpg"],
+  "w2": ["externas", "img/wix/2026-11-05_final_0192f965.jpg"],
   "w3": ["externas", "img/wix/2026-11-05_91_63bd02ff.jpg"],
   "w4": ["externas", "img/wix/2026-11-04_imagem-do-chatgpt-4-de-nov-de-2026-13-00_880d7a2a.jpg"],
   "w5": ["externas", "img/wix/2026-11-04_imagem-do-chatgpt-4-de-nov-de-2026-12-50_05c045ab.jpg"],

@@ -49,6 +49,7 @@ selections.arquitetura=["w99","w104","w105","w103","w118","w119","w113","w112","
 selections.interiores=["w89","w93","w92","w95","w91","w94","w142","w153","w154","w155","w156","w160","w161","w162","w163","w217","w164","w165","w218"];
 // Plantas humanizadas: seleção de 10 (as demais continuam no acervo).
 selections.plantas=["w81","w87","w191","w86","w120","w147","w84","w212","w123","w134"];
+selections.fotomontagem=["3","w3","w2","w1"];
 // Miniatura leve (img/mini, até 1200 px) na página; a foto original só abre na tela cheia.
 // width/height reservam o espaço antes de a imagem carregar, para o mosaico não pular.
 const mini=path=>/^img\/(acervo|wix|modelagem)\//.test(path||'')?path.replace(/^img\//,'img/mini/'):path;

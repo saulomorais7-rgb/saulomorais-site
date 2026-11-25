@@ -301,7 +301,9 @@ body header .brand:hover .brand-name{color:var(--pop)}
   line-height: 1;
 }
 
-.film-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(16px,2.5vw,34px);margin:30px 0}
+.film-gallery{display:grid;grid-template-columns:1fr minmax(0,.633fr);grid-template-rows:auto auto;gap:clamp(16px,2.5vw,34px);margin:30px 0;align-items:start}
+.film-gallery .portfolio-film.is-vertical{grid-column:2;grid-row:1 / span 2;width:100%;height:100%;max-height:none;aspect-ratio:auto;object-fit:cover;align-self:stretch}
+@media(max-width:760px){.film-gallery{grid-template-columns:1fr}.film-gallery .portfolio-film.is-vertical{grid-column:auto;grid-row:auto;width:min(100%,420px);height:auto;aspect-ratio:9/16;justify-self:center}}
 .portfolio-film{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#12110f;border-radius:clamp(8px,1.4vw,20px)}
 .work-stage .tile.projeto .hero-image{object-position:center 30%}
 .portfolio-film.is-vertical{aspect-ratio:9/16;max-height:80vh;width:auto;margin:auto}
