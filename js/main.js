@@ -35,6 +35,12 @@ Object.entries(window.WIX_ACERVO||{}).forEach(([key,[category,path]])=>{
  if(category.startsWith('_'))return;
  (selections[category]=selections[category]||[]).push(key);
 });
+// Fotos duplicadas: a versão menor dá lugar à de maior resolução (na mesma posição); as cópias de mesmo tamanho saem.
+const higherRes={"12":"w54","33":"w12","9":"w10","16":"w18","4":"w104","24":"w38","2":"w29","6":"w25","11":"w22","13":"w7","18":"w32","65":"w91","20":"w207","wix-63":"w90","wix-70":"w33","90":"w86","75":"w81","72":"w87","wix-83":"w85","wix-87":"w84"};
+const duplicates=new Set(["61","w13","w20","w31","w205","w183","w162","w160","w165","w196","w197","w209","w158","w159"]);
+Object.keys(selections).forEach(c=>{
+ selections[c]=selections[c].map(k=>higherRes[k]||k).filter((k,i,a)=>!duplicates.has(String(k))&&a.findIndex(x=>String(x)===String(k))===i);
+});
 const photo=(id,style='hero-image',loading='lazy',alt='')=>'<img class="'+style+'" src="'+photos[id]+'" alt="'+alt+'" loading="'+loading+'">';
 let backdropKey=null;
 function setBackdrop(key){
