@@ -155,7 +155,7 @@ function render(){
  if(id==='home') page='<section class="landing">'+landingFilm()+
   '<div class="landing-content"><p class="landing-kicker">Saulo Morais · Arquiteto e urbanista</p>'+
   '<h1><span>Arquitetura.</span><span>Visualização</span><span>em 3D.</span></h1>'+
-  '<p class="landing-description">Projetos de arquitetura, imagens e modelos 3D, sites e marketing imobiliário para apresentar e vender espaços.</p>'+
+  '<p class="landing-description">Projetos de arquitetura, imagens, modelos 3D e marketing imobiliário para apresentar e vender espaços.</p>'+
   '<a class="landing-action" href="#projetos">Explorar trabalhos <span aria-hidden="true">↗</span></a></div></section>';
  else if(id==='projetos') page=workIndex();
  else if(id==='sobre') page=renderAbout();
@@ -182,7 +182,7 @@ function render(){
 }
 const dictionary=new Map([
  ['Arquitetura.','Architecture.'],['Visualização','Visualization'],['em 3D.','in 3D.'],
- ['Projetos de arquitetura, imagens e modelos 3D, sites e marketing imobiliário para apresentar e vender espaços.','Architectural projects, images and 3D models, websites and real estate marketing to present and sell spaces.'],
+ ['Projetos de arquitetura, imagens, modelos 3D e marketing imobiliário para apresentar e vender espaços.','Architectural projects, images, 3D models and real estate marketing to present and sell spaces.'],
  ['Explorar trabalhos ','Explore work '],['Em breve','Coming soon'],['Pausar movimento','Pause motion'],['Retomar movimento','Resume motion'],['Arraste ou use as setas para trocar a imagem','Drag or use the arrow keys to change the image'],['Trabalhos','Work'],['← Voltar a Trabalhos','← Back to Work'],['Vista aérea urbana','Urban aerial view'],['← Voltar a Archviz','← Back to Archviz'],['Perspectiva externa','Exterior rendering'],['Perspectiva interna','Interior rendering'],['Imagem do acervo','Portfolio image'],['Perspectiva externa · imagem do acervo','Exterior rendering · portfolio image'],
 ['Projetos','Projects'],['Projetos ↗','Projects ↗'],['Sobre','About'],['Sobre ↗','About ↗'],['Serviços','Services'],['Voltar ao início ↑','Back to top ↑'],['Arquiteto e urbanista','Architect and urban planner'],
 ['Saulo Morais · Arquiteto e urbanista','Saulo Morais · Architect and urban planner'],['Arquitetura','Architecture'],['em cena.','in focus.'],['Explorar Projetos ↗','Explore Projects ↗'],['Ver cena ⤢','View scene ⤢'],['Acender a luz ☼','Lights on ☼'],['Apagar a luz ☾','Lights off ☾'],
@@ -212,7 +212,7 @@ const englishWork=[
 work.forEach(([,title,,copy],i)=>{dictionary.set(title,englishWork[i][0]);if(copy)dictionary.set(copy,englishWork[i][1])});
 const spanish=new Map(Object.entries({
  'Architecture.':'Arquitectura.','Visualization':'Visualización','in 3D.':'en 3D.',
- 'Architectural projects, images and 3D models, websites and real estate marketing to present and sell spaces.':'Proyectos de arquitectura, imágenes y modelos 3D, sitios web y marketing inmobiliario para presentar y vender espacios.',
+ 'Architectural projects, images, 3D models and real estate marketing to present and sell spaces.':'Proyectos de arquitectura, imágenes, modelos 3D y marketing inmobiliario para presentar y vender espacios.',
  'Explore work ':'Explorar trabajos ','Coming soon':'Próximamente','Pause motion':'Pausar movimiento','Resume motion':'Reanudar movimiento',
  'Drag or use the arrow keys to change the image':'Arrastra o usa las flechas para cambiar la imagen','Home':'Inicio','Work':'Trabajos','← Back to Work':'← Volver a Trabajos','Projects':'Proyectos','Projects ↗':'Proyectos ↗','About':'Sobre mí','About ↗':'Sobre mí ↗','Services':'Servicios','Back to top ↑':'Volver al inicio ↑',
  'Architect and urban planner':'Arquitecto y urbanista','Saulo Morais · Architect and urban planner':'Saulo Morais · Arquitecto y urbanista',
