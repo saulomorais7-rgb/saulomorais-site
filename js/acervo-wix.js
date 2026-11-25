@@ -204,4 +204,7 @@ window.WIX_ACERVO = {
   "w214": ["externas", "img/wix/2015-09-02_169230-503485426349010-765433515-o_650e46a3.jpg"],
   "w215": ["externas", "img/wix/2015-09-02_11952863-1024044347626446-25634034101526_68aa8ddb.jpg"],
   "w216": ["externas", "img/wix/2015-09-02_1009091-705898439441040-885714251-o_3f33df5d.jpg"],
+  "mod1": ["_modelagem", "img/modelagem/modelagem-torre.jpg"],
+  "mod2": ["_modelagem", "img/modelagem/modelagem-resort.jpg"],
+  "mod3": ["_modelagem", "img/modelagem/modelagem-fachada.jpg"],
 };
