@@ -179,11 +179,9 @@ const aboutText = {
 };
 function renderAbout(){
  const [title, paragraphs] = aboutText[language];
- const [lead,...rest]=paragraphs;
- return '<section class="wrap information-page about-v2"><h1>'+title+'</h1>'+
-  '<div class="about-intro"><img class="about-avatar" src="img/acervo/saulo-retrato-circulo.jpg" width="800" height="800" alt="Saulo Morais"><p class="about-lead">'+lead+'</p></div>'+
-  '<div class="about-body">'+rest.map(paragraph=>'<p>'+paragraph+'</p>').join('')+'</div>'+
-  '<a class="about-link" href="https://br.linkedin.com/in/saulomoraisarquiteto" target="_blank" rel="noopener">LinkedIn ↗</a></section>';
+ return '<section class="wrap information-page"><h1>'+title+'</h1><div class="about-layout about-v3"><img class="about-avatar" src="img/acervo/saulo-retrato-circulo.jpg" width="800" height="800" alt="Saulo Morais"><div class="about-copy">'+
+  paragraphs.map(paragraph=>'<p>'+paragraph+'</p>').join('')+
+  '<a href="https://br.linkedin.com/in/saulomoraisarquiteto" target="_blank" rel="noopener">LinkedIn ↗</a></div></div></section>';
 }
 
 function render(){

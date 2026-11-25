@@ -443,3 +443,8 @@ body.services-page main h1{font-family:var(--site-type);font-style:normal;font-w
  .about-v2 .about-intro{grid-template-columns:1fr;justify-items:start;gap:20px}
  .about-v2 .about-body{grid-template-columns:1fr;gap:18px}
 }
+
+/* Sobre v3: texto como antes, foto pequena em círculo embaixo, na coluna da esquerda */
+.about-v3{display:grid;grid-template-columns:clamp(130px,15vw,190px) minmax(0,62ch);gap:clamp(26px,5vw,72px);align-items:end}
+.about-v3 .about-avatar{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%;border:1px solid #e8c39666;box-shadow:0 0 0 6px #100e0d80,0 18px 40px #0008}
+@media(max-width:760px){.about-v3{grid-template-columns:1fr}.about-v3 .about-avatar{width:130px;order:2}}
