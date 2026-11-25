@@ -206,7 +206,7 @@ function render(){
   const parent=chapters.find(chapter=>chapter[3].includes(id));
   const back=parent?.[0]==='archviz'?'<p><a href="#archviz">← Voltar a Archviz</a></p>':'<p><a href="#projetos">← Todos os projetos</a></p>';
   const text=copy?'<p class="intro">'+copy+'</p>':'';
-  page=wrap(number(i)+' / '+groups[i],title,(['master-plan'].includes(id)?'<div class="split">'+text+gallery+'</div>':text+gallery)+back);
+  page=wrap(number(i)+' / '+groups[i],title,text+gallery+back);
  } else page=wrap('Portfólio','Projetos',index());
  document.querySelector('main').innerHTML=page;
  document.querySelectorAll('nav a').forEach(a=>a.getAttribute('href')==='#'+(i>=0||chapter?'projetos':id)?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
