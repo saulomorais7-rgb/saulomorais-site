@@ -55,8 +55,14 @@ let backdropKey=null;
 function setBackdrop(key){
  if(backdropKey===key)return;
  backdropKey=key;
- document.querySelector('.site-backdrop').innerHTML=photo(key,'site-backdrop-image','eager');
+ // Troca o fundo só depois que a nova imagem estiver carregada, para não piscar.
+ const holder=document.createElement('div');holder.innerHTML=photo(key,'site-backdrop-image','eager');
+ const img=holder.firstChild,box=document.querySelector('.site-backdrop');
+ const swap=()=>{if(backdropKey===key)box.replaceChildren(img)};
+ if(!box.firstChild||img.complete)swap();else{img.onload=img.onerror=swap;setTimeout(swap,1500)}
 }
+// Deixa as duas imagens de fundo já no cache do navegador.
+['film-22',12].forEach(k=>{const i=new Image();i.src=mini(photos[k])});
 setBackdrop(12);
 // Filme de fundo: mostra a imagem parada (poster) até haver dados suficientes para tocar sem travar.
 // Online o filme chega aos poucos; tocar antes disso causa o "tranco" (para e recomeça).
@@ -197,7 +203,7 @@ function render(){
   const parent=chapters.find(chapter=>chapter[3].includes(id));
   const back=parent?.[0]==='archviz'?'<p><a href="#archviz">← Voltar a Archviz</a></p>':'<p><a href="#projetos">← Todos os projetos</a></p>';
   const text=copy?'<p class="intro">'+copy+'</p>':'';
-  page=wrap(number(i)+' / '+groups[i],title,(['plantas','master-plan'].includes(id)?'<div class="split">'+text+gallery+'</div>':text+gallery)+back);
+  page=wrap(number(i)+' / '+groups[i],title,(['master-plan'].includes(id)?'<div class="split">'+text+gallery+'</div>':text+gallery)+back);
  } else page=wrap('Portfólio','Projetos',index());
  document.querySelector('main').innerHTML=page;
  document.querySelectorAll('nav a').forEach(a=>a.getAttribute('href')==='#'+(i>=0||chapter?'projetos':id)?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
