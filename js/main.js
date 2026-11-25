@@ -46,7 +46,11 @@ const uncuratedSelections=JSON.parse(JSON.stringify(selections)); // usado pela 
 const curatedOut={externas:["w53","wix-49","w5","w6","w24","w28","w30","w35","w39","w45","w50","w60","w61","w77","w82","w83","w96","w98","w109","w110","w111","w118","w119","w135","w136","w139","w137","w138","w140","w143","w144","w145","w146","w178","w179","w181","w182","w186","w184","w188","w189","w200","w201","w203","w208","w211","w214","w215","w216"],
  internas:["w40","w164","w22","w90","w19","w44","w49","w51","w65","w66","w67","w68","w69","w70","w71","w72","w73","w74","w116","w142","w153","w154","w155","w156","w157","w163","w166","w167","w168","w169","w171","w172","w173","w180","w185","w187","w190","w192","w194","w198","w199"]};
 Object.entries(curatedOut).forEach(([c,out])=>{const s=new Set(out);selections[c]=(selections[c]||[]).filter(k=>!s.has(String(k)))});
-const photo=(id,style='hero-image',loading='lazy',alt='')=>'<img class="'+style+'" src="'+photos[id]+'" alt="'+alt+'" loading="'+loading+'">';
+// Miniatura leve (img/mini, até 1200 px) na página; a foto original só abre na tela cheia.
+// width/height reservam o espaço antes de a imagem carregar, para o mosaico não pular.
+const mini=path=>/^img\/(acervo|wix|modelagem)\//.test(path||'')?path.replace(/^img\//,'img/mini/'):path;
+const photo=(id,style='hero-image',loading='lazy',alt='')=>{const full=photos[id],size=(window.IMG_DIMS||{})[full];
+ return '<img class="'+style+'" src="'+mini(full)+'" data-full="'+full+'"'+(size?' width="'+size[0]+'" height="'+size[1]+'"':'')+' alt="'+alt+'" loading="'+loading+'" decoding="async">';};
 let backdropKey=null;
 function setBackdrop(key){
  if(backdropKey===key)return;
@@ -544,7 +548,7 @@ function showViewer(index){
  viewerIndex=(index+viewerList.length)%viewerList.length;
  const image=viewerList[viewerIndex];
  const big=viewer.querySelector('.viewer-image');
- big.src=image.currentSrc||image.src; big.alt=image.alt;
+ big.src=image.dataset.full||image.currentSrc||image.src; big.alt=image.alt;
  viewer.querySelector('.viewer-count').textContent=(viewerIndex+1)+' / '+viewerList.length;
  if(!viewer.open)viewer.showModal();
 }
