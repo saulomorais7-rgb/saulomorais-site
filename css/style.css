@@ -417,3 +417,4 @@ body.about-page .site-backdrop-image,body.services-page .site-backdrop-image,bod
 /* Trabalhos — título na mesma linha do "Portfólio" e da frase ao lado: reta, caixa alta, espaçada */
 .work-index .work-heading{font-family:var(--site-type);font-style:normal;font-weight:600;text-transform:uppercase;letter-spacing:.2em;font-size:clamp(22px,2.3vw,34px);line-height:1.15;color:#f8f7f3}
 .work-title{gap:12px}
+.work-index .work-heading{color:#e8c396}
