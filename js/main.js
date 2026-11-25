@@ -162,26 +162,28 @@ function renderServices(){
 }
 const aboutText = {
  pt: ['Sobre', [
-  'Sou Saulo Morais, arquiteto e urbanista com 15 anos de experiência em arquitetura, interiores e visualização 3D.',
+  'Arquiteto e urbanista com 15 anos de experiência em arquitetura, interiores e visualização 3D.',
   'Estudei na PUC Minas. Minha trajetória profissional inclui experiência em Poços de Caldas e na Elephant Skin. Ao longo desse percurso, trabalhei com projeto arquitetônico, interiores, design 3D e gestão de projetos.',
   'Desenvolvo projetos de arquitetura e interiores e produzo perspectivas, plantas humanizadas, filmes e modelos 3D. Trabalho da escala do mobiliário à de conjuntos urbanos, adaptando a representação à etapa do projeto e a quem vai usá-la.'
  ]],
  en: ['About', [
-  'I’m Saulo Morais, an architect and urban planner with 15 years of experience in architecture, interiors and 3D visualization.',
+  'Architect and urban planner with 15 years of experience in architecture, interiors and 3D visualization.',
   'I studied at PUC Minas. My professional background includes work in Poços de Caldas and at Elephant Skin, across architectural design, interiors, 3D design and project management.',
   'I design buildings and interiors and produce renderings, furnished floor plans, films and 3D models. My work ranges from furniture to urban developments, with the presentation tailored to the design stage and its audience.'
  ]],
  es: ['Sobre mí', [
-  'Soy Saulo Morais, arquitecto y urbanista con 15 años de experiencia en arquitectura, interiores y visualización 3D.',
+  'Arquitecto y urbanista con 15 años de experiencia en arquitectura, interiores y visualización 3D.',
   'Estudié en la PUC Minas. Mi trayectoria incluye experiencia en Poços de Caldas y en Elephant Skin, en áreas como diseño arquitectónico, interiores, diseño 3D y gestión de proyectos.',
   'Desarrollo proyectos de arquitectura e interiores y produzco perspectivas, plantas amuebladas, películas y modelos 3D. Trabajo desde la escala del mobiliario hasta la de los conjuntos urbanos, adaptando la representación a cada etapa y a su público.'
  ]]
 };
 function renderAbout(){
  const [title, paragraphs] = aboutText[language];
- return '<section class="wrap information-page"><h1>'+title+'</h1><div class="about-layout"><img class="about-portrait" src="img/acervo/saulo-retrato.jpg" alt="Saulo Morais"><div class="about-copy">'+
-  paragraphs.map(paragraph=>'<p>'+paragraph+'</p>').join('')+
-  '<a href="https://br.linkedin.com/in/saulomoraisarquiteto">LinkedIn ↗</a></div></div></section>';
+ const [lead,...rest]=paragraphs;
+ return '<section class="wrap information-page about-v2"><h1>'+title+'</h1>'+
+  '<div class="about-intro"><img class="about-avatar" src="img/acervo/saulo-retrato-circulo.jpg" width="800" height="800" alt="Saulo Morais"><p class="about-lead">'+lead+'</p></div>'+
+  '<div class="about-body">'+rest.map(paragraph=>'<p>'+paragraph+'</p>').join('')+'</div>'+
+  '<a class="about-link" href="https://br.linkedin.com/in/saulomoraisarquiteto" target="_blank" rel="noopener">LinkedIn ↗</a></section>';
 }
 
 function render(){
