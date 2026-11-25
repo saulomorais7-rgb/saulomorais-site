@@ -207,4 +207,5 @@ window.WIX_ACERVO = {
   "mod1": ["_modelagem", "img/modelagem/modelagem-torre.jpg"],
   "mod2": ["_modelagem", "img/modelagem/modelagem-resort.jpg"],
   "mod3": ["_modelagem", "img/modelagem/modelagem-fachada.jpg"],
+  "mod4": ["_modelagem", "img/modelagem/modelagem-torre-2.jpg"],
 };
