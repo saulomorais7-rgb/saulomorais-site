@@ -7,7 +7,7 @@ const work=[
 ['filmes','Filmes de arquitetura',2,'O filme conduz o olhar pelo projeto. O movimento de câmera mostra percursos e transições entre ambientes, enquanto a luz, a montagem e o som ajudam a situar a experiência de cada espaço.'],
 ['master-plan','Master Plans',3,'A modelagem 3D de um master plan reúne volumes, vias, espaços abertos e paisagismo na mesma cena. A texturização diferencia superfícies e usos. A iluminação e a finalização dão legibilidade ao conjunto, tanto em vistas aéreas quanto ao nível da rua.'],
 ['modelagem-arquitetura','Modelagem de arquitetura',3,'Geometria do edifício e de seu entorno construída a partir de desenhos e referências, com nível de detalhe adequado às vistas e aos usos previstos.'],
-['fotomontagem','Fotomontagem',3,'Inserção do modelo 3D em uma fotografia real do local. Câmera, escala e perspectiva alinhadas, com luz e sombras ajustadas para mostrar como a proposta se encaixa no entorno.'],
+['fotomontagem','Fotomontagem',"w2",'Inserção do modelo 3D em uma fotografia real do local. Câmera, escala e perspectiva alinhadas, com luz e sombras ajustadas para mostrar como a proposta se encaixa no entorno.'],
 ['assets','Modelagem de assets',3,'Modelagem de mobiliário, equipamentos e elementos sob medida para compor cenas 3D. Geometria e materiais preparados de acordo com a escala e a proximidade da câmera.'],
 ['estandes','Estandes',2,'Imagens 3D de estandes para feiras e eventos. As perspectivas ajudam a avaliar a circulação, a visibilidade da marca e a iluminação antes da montagem.'],
 ['interatividade','Interatividade',0,'Tours virtuais e experiências interativas permitem que o cliente percorra o projeto no próprio ritmo, escolha os ambientes e explore os detalhes antes da obra.']
@@ -49,7 +49,7 @@ selections.arquitetura=["w99","w104","w105","w103","w118","w119","w113","w112","
 selections.interiores=["w89","w93","w92","w95","w91","w94","w142","w153","w154","w155","w156","w160","w161","w162","w163","w217","w164","w165","w218"];
 // Plantas humanizadas: seleção de 10 (as demais continuam no acervo).
 selections.plantas=["w81","w87","w191","w86","w120","w147","w84","w212","w123","w134"];
-selections.fotomontagem=["3","w3","w2","w1"];
+selections.fotomontagem=["w2","w3","w1"];
 // Miniatura leve (img/mini, até 1200 px) na página; a foto original só abre na tela cheia.
 // width/height reservam o espaço antes de a imagem carregar, para o mosaico não pular.
 const mini=path=>/^img\/(acervo|wix|modelagem)\//.test(path||'')?path.replace(/^img\//,'img/mini/'):path;
