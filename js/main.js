@@ -26,7 +26,7 @@ const selections={"externas":[12,33,9,16,0,4,7,19,24,35,"wix-49","wix-55","wix-5
 const films=[{"poster":"film-22","src":"media/filme-22.mp4"},
  {"src":"media/wix/2026-10-29_c0_e036932d.mp4","vertical":true},
  {"src":"media/wix/2026-03-13_freepik-1280x720-24fps-71188_b3714471.mp4"}];
-const covers={"projeto":1,"archviz":2,"modelagem":21};
+const covers={"projeto":1,"archviz":"w3","modelagem":21};
 // Acervo migrado do Wix (js/acervo-wix.js): soma as imagens às categorias do portfólio
 Object.entries(window.WIX_ACERVO||{}).forEach(([key,[category,path]])=>{
  photos[key]=path;
