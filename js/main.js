@@ -41,9 +41,12 @@ Object.keys(selections).forEach(c=>{
 });
 const uncuratedSelections=JSON.parse(JSON.stringify(selections)); // usado pela tela curadoria.html
 // Curadoria do Saulo (marcadas como "Sai" na tela curadoria.html).
-const curatedOut={externas:["w100","w101","w102","w53","wix-49","w5","w6","w24","w28","w30","w35","w39","w45","w50","w60","w61","w77","w82","w83","w96","w98","w109","w110","w111","w118","w119","w135","w136","w139","w137","w138","w140","w143","w144","w145","w146","w178","w179","w181","w182","w186","w184","w188","w189","w200","w201","w203","w208","w211","w214","w215","w216"],
+const curatedOut={externas:["w55","w100","w101","w102","w53","wix-49","w5","w6","w24","w28","w30","w35","w39","w45","w50","w60","w61","w77","w82","w83","w96","w98","w109","w110","w111","w118","w119","w135","w136","w139","w137","w138","w140","w143","w144","w145","w146","w178","w179","w181","w182","w186","w184","w188","w189","w200","w201","w203","w208","w211","w214","w215","w216"],
  internas:["w40","w164","w22","w90","w19","w44","w49","w51","w65","w66","w67","w68","w69","w70","w71","w72","w73","w74","w116","w142","w153","w154","w155","w156","w157","w163","w166","w167","w168","w169","w171","w172","w173","w180","w185","w187","w190","w192","w194","w198","w199"]};
 Object.entries(curatedOut).forEach(([c,out])=>{const s=new Set(out);selections[c]=(selections[c]||[]).filter(k=>!s.has(String(k)))});
+// Fotos que ele pediu no topo da galeria (na ordem)
+const promoted={externas:["w56","w99"]};
+Object.entries(promoted).forEach(([c,top])=>{selections[c]=[...top,...selections[c].filter(k=>!top.includes(String(k)))]});
 // Projetos (vindos da página "Architectural Design" do Wix, na mesma ordem de lá).
 selections.arquitetura=["w99","w104","w105","w103","w118","w119","w113","w112","w135","w138","w117","w140","w139","w146","w145","w136","w97","w96","w98","w143"];
 selections.interiores=["w89","w93","w92","w95","w91","w94","w142","w153","w154","w155","w156","w160","w161","w162","w163","w217","w164","w165","w218"];
