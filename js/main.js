@@ -187,7 +187,8 @@ function renderAbout(){
   '<a href="https://br.linkedin.com/in/saulomoraisarquiteto" target="_blank" rel="noopener">LinkedIn ↗</a></div></div></section>';
 }
 // Dados de contato: preencha aqui. Campo vazio = o cartão não aparece.
-const CONTACT={whatsapp:'(35) 99908-8020',phone:'',email:'saulomorais7@gmail.com',city:'',linkedin:'',instagram:'',form:''}; // form: destino do FormSubmit (pode trocar pelo código que o FormSubmit enviar após a ativação)
+const CONTACT={whatsapp:'(35) 99908-8020',phone:'',email:'saulomorais7@gmail.com',city:'',linkedin:'',instagram:'',web3key:'',form:''};
+// web3key: chave do Web3Forms (web3forms.com) — com ela o formulário envia direto para o Gmail. form: alternativa pelo FormSubmit (não ativou).
 const contactText={
  pt:{title:'Contato',intro:'Conte um pouco sobre o seu projeto: tipo de projeto, de imagem ou serviço, prazo e onde fica. A resposta costuma sair no mesmo dia útil.',
   wa:'WhatsApp',tel:'Telefone',mail:'E-mail',loc:'Endereço',remote:'Atendimento em todo o Brasil e no exterior, de forma remota.',
@@ -228,7 +229,7 @@ function renderContact(){
   '<label>'+t.msg+'<textarea name="msg" rows="5" required></textarea></label>'+
   '<input type="text" name="_honey" class="contact-trap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
   '<p class="contact-error" role="alert" hidden>'+t.required+'</p><p class="contact-status" role="status" hidden></p>'+
-  '<div class="contact-actions">'+(c.form?'<button type="submit" value="mail">'+t.sendMail+'</button>':'')+(c.whatsapp?'<button type="submit" value="wa" class="'+(c.form?'is-secondary':'')+'">'+t.sendWa+'</button>':'')+'</div></form></div></section>';
+  '<div class="contact-actions">'+(c.web3key||c.form?'<button type="submit" value="mail">'+t.sendMail+'</button>':'')+(c.whatsapp?'<button type="submit" value="wa" class="'+(c.web3key||c.form?'is-secondary':'')+'">'+t.sendWa+'</button>':'')+'</div></form></div></section>';
 }
 document.addEventListener('submit',async event=>{
  const form=event.target.closest('.contact-form'); if(!form)return; event.preventDefault();
@@ -241,9 +242,14 @@ document.addEventListener('submit',async event=>{
  const button=event.submitter||form.querySelector('button[value=mail]'), label=button.textContent;
  button.disabled=true; button.textContent=t.sending; status.hidden=true;
  try{
-  const response=await fetch('https://formsubmit.co/ajax/'+CONTACT.form,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
-   body:JSON.stringify({[t.name]:f.get('name'),[t.reply]:f.get('reply'),[t.service]:f.get('service'),[t.msg]:f.get('msg'),
-    _subject:'Site saulomorais.com · '+f.get('service')+' · '+f.get('name'),_replyto:/@/.test(f.get('reply'))?f.get('reply'):undefined,_template:'table',_captcha:'false'})});
+  const subject='Site saulomorais.com · '+f.get('service')+' · '+f.get('name'), replyMail=/@/.test(f.get('reply'))?f.get('reply'):undefined;
+  const response=CONTACT.web3key
+   ? await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({access_key:CONTACT.web3key,subject,from_name:'Site saulomorais.com',replyto:replyMail,
+       [t.name]:f.get('name'),[t.reply]:f.get('reply'),[t.service]:f.get('service'),[t.msg]:f.get('msg')})})
+   : await fetch('https://formsubmit.co/ajax/'+CONTACT.form,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({[t.name]:f.get('name'),[t.reply]:f.get('reply'),[t.service]:f.get('service'),[t.msg]:f.get('msg'),
+       _subject:subject,_replyto:replyMail,_template:'table',_captcha:'false'})});
   const result=await response.json().catch(()=>({}));
   if(!response.ok||String(result.success)==='false')throw new Error(result.message||response.status);
   form.reset(); status.textContent=t.sent; status.className='contact-status is-ok';
