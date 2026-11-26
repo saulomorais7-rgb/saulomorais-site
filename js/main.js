@@ -187,7 +187,7 @@ function renderAbout(){
   '<a href="https://br.linkedin.com/in/saulomoraisarquiteto" target="_blank" rel="noopener">LinkedIn ↗</a></div></div></section>';
 }
 // Dados de contato: preencha aqui. Campo vazio = o cartão não aparece.
-const CONTACT={whatsapp:'(35) 99908-8020',phone:'',email:'saulomorais7@gmail.com',city:'',linkedin:'',instagram:'',form:'saulomorais7@gmail.com'}; // form: destino do FormSubmit (pode trocar pelo código que o FormSubmit enviar após a ativação)
+const CONTACT={whatsapp:'(35) 99908-8020',phone:'',email:'saulomorais7@gmail.com',city:'',linkedin:'',instagram:'',form:''}; // form: destino do FormSubmit (pode trocar pelo código que o FormSubmit enviar após a ativação)
 const contactText={
  pt:{title:'Contato',intro:'Conte um pouco sobre o seu projeto: tipo de projeto, de imagem ou serviço, prazo e onde fica. A resposta costuma sair no mesmo dia útil.',
   wa:'WhatsApp',tel:'Telefone',mail:'E-mail',loc:'Endereço',remote:'Atendimento em todo o Brasil e no exterior, de forma remota.',
