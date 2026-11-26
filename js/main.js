@@ -96,10 +96,12 @@ function filmGallery(title){
  );
  return '<div class="film-gallery">'+players.join('')+'</div>';
 }
+// Capa escolhida por ele para o cartão (sem mudar a ordem da galeria)
+const cardCovers={externas:'w14'};
 function archvizCards(ids){
  return '<div class="archviz-grid">'+ids.map(id=>{
   const [,title]=work.find(row=>row[0]===id);
-  const cover=id==='filmes'?films[0].poster:selections[id]?.[0];
+  const cover=id==='filmes'?films[0].poster:cardCovers[id]||selections[id]?.[0];
   const art=cover===undefined?'<span class="card-graphic" aria-hidden="true"></span>':photo(cover);
   return '<a class="archviz-card '+id+(cover===undefined?'':' has-photo')+'" href="#'+id+'">'+art+
    '<span class="archviz-title">'+title+'</span><span class="archviz-arrow" aria-hidden="true">↗</span></a>';
