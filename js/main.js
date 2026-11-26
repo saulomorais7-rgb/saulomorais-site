@@ -97,7 +97,7 @@ function filmGallery(title){
  return '<div class="film-gallery">'+players.join('')+'</div>';
 }
 // Capa escolhida por ele para o cartão (sem mudar a ordem da galeria)
-const cardCovers={externas:'w14'};
+const cardCovers={externas:'w14',internas:'w29'};
 function archvizCards(ids){
  return '<div class="archviz-grid">'+ids.map(id=>{
   const [,title]=work.find(row=>row[0]===id);
