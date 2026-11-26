@@ -293,7 +293,7 @@ function render(){
  } else page=wrap('Portfólio','Projetos',index());
  document.querySelector('main').innerHTML=page;
  document.querySelectorAll('nav a').forEach(a=>a.getAttribute('href')==='#'+(i>=0||chapter?'projetos':id)?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
- document.title=(document.querySelector('h1').textContent.replace('desenhoà','desenho à'))+' | Saulo Morais';
+ document.title=id==='home'?'Saulo Morais · Arquiteto e Urbanista em Poços de Caldas':(document.querySelector('h1').textContent.replace('desenhoà','desenho à'))+' | Saulo Morais';
  window.scrollTo(0,0);
 }
 const dictionary=new Map([
