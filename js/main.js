@@ -188,7 +188,7 @@ const aboutText = {
 };
 function renderAbout(){
  const [title, paragraphs] = aboutText[language];
- return '<section class="wrap information-page"><h1>'+title+'</h1><div class="about-layout about-v3"><img class="about-avatar" src="img/acervo/saulo-retrato-circulo.jpg" width="800" height="800" alt="Saulo Morais"><div class="about-copy">'+
+ return '<section class="wrap information-page"><h1>'+title+'</h1><div class="about-layout about-v3"><img class="about-avatar" src="img/acervo/saulo-retrato-circulo.jpg?v=2" width="800" height="800" alt="Saulo Morais"><div class="about-copy">'+
   paragraphs.map(paragraph=>'<p>'+paragraph+'</p>').join('')+
   '<a href="https://br.linkedin.com/in/saulomoraisarquiteto" target="_blank" rel="noopener">LinkedIn ↗</a></div></div></section>';
 }
