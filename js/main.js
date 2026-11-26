@@ -172,17 +172,17 @@ function renderServices(){
 const aboutText = {
  pt: ['Sobre', [
   'Arquiteto e urbanista com 15 anos de experiência em arquitetura, interiores e visualização 3D.',
-  'Estudei na PUC Minas. Minha trajetória profissional inclui experiência em Poços de Caldas e na Elephant Skin. Ao longo desse percurso, trabalhei com projeto arquitetônico, interiores, design 3D e gestão de projetos.',
+  'Estudei na PUC Minas. Minha trajetória profissional inclui experiência nacional e internacional em empresas de engenharia, arquitetura e estúdios de archviz. Ao longo desse percurso, trabalhei com projeto arquitetônico, interiores, design 3D e gestão de projetos.',
   'Desenvolvo projetos de arquitetura e interiores e produzo perspectivas, plantas humanizadas, filmes e modelos 3D. Trabalho da escala do mobiliário à de conjuntos urbanos, adaptando a representação à etapa do projeto e a quem vai usá-la.'
  ]],
  en: ['About', [
   'Architect and urban planner with 15 years of experience in architecture, interiors and 3D visualization.',
-  'I studied at PUC Minas. My professional background includes work in Poços de Caldas and at Elephant Skin, across architectural design, interiors, 3D design and project management.',
+  'I studied at PUC Minas. My professional background includes national and international experience at engineering and architecture firms and archviz studios, across architectural design, interiors, 3D design and project management.',
   'I design buildings and interiors and produce renderings, furnished floor plans, films and 3D models. My work ranges from furniture to urban developments, with the presentation tailored to the design stage and its audience.'
  ]],
  es: ['Sobre mí', [
   'Arquitecto y urbanista con 15 años de experiencia en arquitectura, interiores y visualización 3D.',
-  'Estudié en la PUC Minas. Mi trayectoria incluye experiencia en Poços de Caldas y en Elephant Skin, en áreas como diseño arquitectónico, interiores, diseño 3D y gestión de proyectos.',
+  'Estudié en la PUC Minas. Mi trayectoria incluye experiencia nacional e internacional en empresas de ingeniería y arquitectura y en estudios de archviz, en áreas como diseño arquitectónico, interiores, diseño 3D y gestión de proyectos.',
   'Desarrollo proyectos de arquitectura e interiores y produzco perspectivas, plantas amuebladas, películas y modelos 3D. Trabajo desde la escala del mobiliario hasta la de los conjuntos urbanos, adaptando la representación a cada etapa y a su público.'
  ]]
 };
