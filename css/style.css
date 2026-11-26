@@ -479,3 +479,13 @@ body.services-page main h1{font-family:var(--site-type);font-style:normal;font-w
 .contact-card .contact-icon{grid-row:1 / span 2;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid #e8c39666;color:#e8c396}
 .contact-card .contact-icon svg{width:22px;height:22px}
 .contact-card .contact-icon.is-wa{color:#25d366;border-color:#25d36666}
+/* Contato: os três contatos num cartão só, mais compacto */
+.contact-cards{display:block;max-width:420px;border:1px solid #ffffff24;border-radius:18px;background:#14120fb3;overflow:hidden}
+.contact-card{border:0;border-radius:0;background:none;padding:14px 18px;column-gap:14px;grid-template-columns:36px 1fr;text-decoration:none}
+.contact-card+.contact-card{border-top:1px solid #ffffff1a}
+.contact-card .contact-icon{width:36px;height:36px}
+.contact-card .contact-icon svg{width:18px;height:18px}
+.contact-card span{font-size:11px}
+.contact-card strong{font-size:15px;line-height:1.35}
+.contact-card:hover,.contact-card:focus-visible{background:#ffffff0d;transform:none}
+.contact-card:hover strong{color:#e8c396}
