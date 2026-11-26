@@ -142,17 +142,13 @@ const serviceEntries = [
   ['Exhibition stands and promotional architecture','Design and 3D images of stands for trade shows, events and promotional activations, studying circulation, brand visibility and lighting before installation.'],
   ['Estands y arquitectura promocional','Proyecto e imágenes 3D de estands para ferias, eventos y acciones promocionales, con estudio de circulación, visibilidad de la marca e iluminación antes del montaje.']],
  ['M4 4h7a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4V4Zm16 0h-7a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h8V4Z',
-  ['Books de empreendimentos','Criação de books para lançamento e venda de empreendimentos: diagramação, perspectivas, plantas humanizadas, textos e identidade visual, em versão impressa e digital.'],
-  ['Development sales books','Sales books for launching and selling developments: layout, renderings, furnished floor plans, copy and visual identity, in print and digital versions.'],
-  ['Books de emprendimientos','Creación de books para el lanzamiento y la venta de emprendimientos: diagramación, perspectivas, plantas amuebladas, textos e identidad visual, en versión impresa y digital.']],
+  ['Books e marketing de empreendimentos','Books para lançamento e venda, com diagramação, perspectivas, plantas humanizadas, textos e identidade visual, em versão impressa e digital. Criação e gerenciamento de perfis nas redes sociais, com conteúdo, imagens e filmes, do lançamento à venda.'],
+  ['Sales books and real estate marketing','Sales books for launching and selling developments, with layout, renderings, furnished floor plans, copy and visual identity, in print and digital versions. Creation and management of social media profiles, with content, images and films, from launch to sales.'],
+  ['Books y marketing de emprendimientos','Books para lanzamiento y venta, con diagramación, perspectivas, plantas amuebladas, textos e identidad visual, en versión impresa y digital. Creación y gestión de perfiles en redes sociales, con contenido, imágenes y películas, del lanzamiento a la venta.']],
  ['M3 4h18v13H3V4Zm0 4h18M7 21h10M12 17v4M6 6h.01M8 6h.01',
   ['Criação de sites','Sites para escritórios, empresas e empreendimentos, com design autoral, imagens em destaque e navegação pensada para apresentar o projeto e gerar contatos.'],
   ['Website design','Websites for studios, companies and developments, with bespoke design, prominent imagery and navigation built to present the project and generate leads.'],
-  ['Creación de sitios web','Sitios web para estudios, empresas y emprendimientos, con diseño propio, imágenes destacadas y una navegación pensada para presentar el proyecto y generar contactos.']],
- ['M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm5 5.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7ZM15.5 6h.01',
-  ['Marketing de empreendimentos','Criação e gerenciamento de perfis de empresas e empreendimentos nas redes sociais: identidade visual, conteúdo, imagens e filmes, do lançamento à venda.'],
-  ['Real estate marketing','Creation and management of social media profiles for companies and developments: visual identity, content, images and films, from launch to sales.'],
-  ['Marketing de emprendimientos','Creación y gestión de perfiles de empresas y emprendimientos en redes sociales: identidad visual, contenido, imágenes y películas, del lanzamiento a la venta.']]
+  ['Creación de sitios web','Sitios web para estudios, empresas y emprendimientos, con diseño propio, imágenes destacadas y una navegación pensada para presentar el proyecto y generar contactos.']]
 ];
 function renderServices(){
  const headings = {pt:'Serviços',en:'Services',es:'Servicios'};
