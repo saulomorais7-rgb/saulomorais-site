@@ -224,10 +224,11 @@ function renderContact(){
   card(t.mail,c.email,'mailto:'+c.email,false,'mail'),
   card(t.wa,c.whatsapp,'https://wa.me/'+digits(c.whatsapp)+'?text='+encodeURIComponent(t.hello),true,'wa'),
   card(t.tel,c.phone,'tel:+'+digits(c.phone),false,'tel'),
-  card(t.loc,c.city,'https://www.google.com/maps/search/'+encodeURIComponent(c.city),true,'home'),
   card('LinkedIn',c.linkedin&&'saulomoraisarquiteto',c.linkedin,true),
   card('Instagram',c.instagram&&'@'+c.instagram.replace(/.*instagram\.com\/|\/$/g,''),c.instagram,true)].join('');
- return '<section class="wrap information-page contact-page"><h1>'+t.title+'</h1><div class="contact-layout"><div class="contact-info"><p class="contact-intro">'+t.intro+'</p><div class="contact-cards">'+cards+'</div><p class="contact-note">'+t.remote+'</p></div>'+
+ // Endereço e atendimento remoto ficam no pé da coluna, alinhados com o fim do formulário
+ const foot='<div class="contact-foot">'+card(t.loc,c.city,'https://www.google.com/maps/search/'+encodeURIComponent(c.city),true,'home')+'<p class="contact-note">'+t.remote+'</p></div>';
+ return '<section class="wrap information-page contact-page"><h1>'+t.title+'</h1><div class="contact-layout"><div class="contact-info"><p class="contact-intro">'+t.intro+'</p><div class="contact-cards">'+cards+'</div>'+foot+'</div>'+
   '<form class="contact-form" novalidate><h2>'+t.form+'</h2>'+
   '<label>'+t.name+'<input name="name" autocomplete="name" required></label>'+
   '<label>'+t.reply+'<input name="reply" autocomplete="email" required></label>'+

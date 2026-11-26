@@ -489,3 +489,15 @@ body.services-page main h1{font-family:var(--site-type);font-style:normal;font-w
 .contact-card strong{font-size:15px;line-height:1.35}
 .contact-card:hover,.contact-card:focus-visible{background:#ffffff0d;transform:none}
 .contact-card:hover strong{color:#e8c396}
+/* Contato: contatos soltos (sem caixa) e endereço no pé, alinhado ao fim do formulário */
+.contact-layout{align-items:stretch}
+.contact-info{display:flex;flex-direction:column}
+.contact-cards{border:0;background:none;border-radius:0;overflow:visible}
+.contact-cards .contact-card{padding:10px 0}
+.contact-card+.contact-card{border-top:0}
+.contact-card:hover,.contact-card:focus-visible{background:none}
+.contact-foot{margin-top:auto;padding-top:28px}
+.contact-foot .contact-card{padding:0 0 10px;border:0;background:none}
+.contact-foot .contact-card strong{font-size:14px;color:#ffffffc0;font-weight:400}
+.contact-foot .contact-note{margin:6px 0 0 50px;font-size:13px}
+@media(max-width:860px){.contact-foot{margin-top:0}}
