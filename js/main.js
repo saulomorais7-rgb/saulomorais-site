@@ -192,17 +192,17 @@ const CONTACT={whatsapp:'(35) 99908-8020',phone:'',email:'saulomorais7@gmail.com
 const contactText={
  pt:{title:'Contato',intro:'Conte um pouco sobre o seu projeto: tipo de projeto, de imagem ou serviço, prazo e onde fica. A resposta costuma sair no mesmo dia útil.',
   wa:'WhatsApp',tel:'Telefone',mail:'E-mail',loc:'Endereço',remote:'Atendimento em todo o Brasil e no exterior, de forma remota.',
-  form:'Mande uma mensagem',name:'Nome',reply:'E-mail ou telefone para resposta',service:'Serviço',msg:'Mensagem',sendWa:'Enviar pelo WhatsApp',sendMail:'Enviar mensagem',sending:'Enviando…',sent:'Mensagem enviada! Obrigado pelo contato; a resposta chega em breve.',fail:'Não foi possível enviar agora. Tente de novo ou escreva para o e-mail ao lado.',
+  form:'Mande uma mensagem',name:'Nome',reply:'E-mail ou telefone para resposta',service:'Serviço',msg:'Mensagem',sendWa:'Enviar pelo WhatsApp',sendMail:'Enviar mensagem',sending:'Enviando…',wait:'Enviando a sua mensagem. Isso pode levar até um minuto; não feche a página.',sent:'Mensagem enviada! Obrigado pelo contato; a resposta chega em breve.',fail:'Não foi possível enviar agora. Tente de novo ou escreva para o e-mail ao lado.',
   services:['Perspectivas 3D','Plantas humanizadas','Filme de arquitetura','Master plan','Projeto de arquitetura','Projeto de interiores','Execução de obra','Modelagem 3D','Outro'],
   hello:'Olá, Saulo! Vim pelo site.',required:'Preencha o nome, um contato para resposta e a mensagem.'},
  en:{title:'Contact',intro:'Tell me a little about your project: type of project, image or service, deadline and location. Replies usually go out the same business day.',
   wa:'WhatsApp',tel:'Phone',mail:'Email',loc:'Address',remote:'Working remotely with clients across Brazil and abroad.',
-  form:'Send a message',name:'Name',reply:'Email or phone for the reply',service:'Service',msg:'Message',sendWa:'Send via WhatsApp',sendMail:'Send message',sending:'Sending…',sent:'Message sent! Thank you for getting in touch; you will hear back soon.',fail:'The message could not be sent right now. Please try again or write to the email address alongside.',
+  form:'Send a message',name:'Name',reply:'Email or phone for the reply',service:'Service',msg:'Message',sendWa:'Send via WhatsApp',sendMail:'Send message',sending:'Sending…',wait:'Sending your message. This can take up to a minute; please keep this page open.',sent:'Message sent! Thank you for getting in touch; you will hear back soon.',fail:'The message could not be sent right now. Please try again or write to the email address alongside.',
   services:['3D renderings','Rendered floor plans','Architectural film','Master plan','Architectural design','Interior design','Construction','3D modeling','Other'],
   hello:'Hi Saulo! I found you through your website.',required:'Please fill in your name, a contact for the reply and your message.'},
  es:{title:'Contacto',intro:'Cuénteme un poco sobre su proyecto: tipo de proyecto, de imagen o servicio, plazo y ubicación. La respuesta suele salir el mismo día hábil.',
   wa:'WhatsApp',tel:'Teléfono',mail:'Correo',loc:'Dirección',remote:'Atención remota en todo Brasil y en el exterior.',
-  form:'Envíe un mensaje',name:'Nombre',reply:'Correo o teléfono para la respuesta',service:'Servicio',msg:'Mensaje',sendWa:'Enviar por WhatsApp',sendMail:'Enviar mensaje',sending:'Enviando…',sent:'¡Mensaje enviado! Gracias por el contacto; la respuesta llegará pronto.',fail:'No fue posible enviar ahora. Inténtelo de nuevo o escriba al correo indicado.',
+  form:'Envíe un mensaje',name:'Nombre',reply:'Correo o teléfono para la respuesta',service:'Servicio',msg:'Mensaje',sendWa:'Enviar por WhatsApp',sendMail:'Enviar mensaje',sending:'Enviando…',wait:'Enviando su mensaje. Puede tardar hasta un minuto; no cierre la página.',sent:'¡Mensaje enviado! Gracias por el contacto; la respuesta llegará pronto.',fail:'No fue posible enviar ahora. Inténtelo de nuevo o escriba al correo indicado.',
   services:['Perspectivas 3D','Plantas humanizadas','Película de arquitectura','Master plan','Proyecto de arquitectura','Proyecto de interiores','Ejecución de obra','Modelado 3D','Otro'],
   hello:'¡Hola, Saulo! Llegué a través de su sitio.',required:'Complete su nombre, un contacto para la respuesta y el mensaje.'}};
 const digits=value=>{const d=(value||'').replace(/\D/g,'');return d&&d.length<=11?'55'+d:d}; // número brasileiro sem DDI ganha o 55
@@ -240,7 +240,7 @@ document.addEventListener('submit',async event=>{
  const text=t.hello+'\n\n'+t.name+': '+f.get('name')+'\n'+t.service+': '+f.get('service')+'\n'+t.reply+': '+f.get('reply')+'\n\n'+f.get('msg');
  if(via==='wa'){window.open('https://wa.me/'+digits(CONTACT.whatsapp)+'?text='+encodeURIComponent(text),'_blank','noopener');return}
  const button=event.submitter||form.querySelector('button[value=mail]'), label=button.textContent;
- button.disabled=true; button.textContent=t.sending; status.hidden=true;
+ button.disabled=true; button.textContent=t.sending; status.className='contact-status'; status.textContent=t.wait; const slow=setTimeout(()=>{status.hidden=false},3000);
  try{
   const subject='Site saulomorais.com · '+f.get('service')+' · '+f.get('name'), replyMail=/@/.test(f.get('reply'))?f.get('reply'):undefined;
   const response=CONTACT.web3key
@@ -254,7 +254,7 @@ document.addEventListener('submit',async event=>{
   if(!response.ok||String(result.success)==='false')throw new Error(result.message||response.status);
   form.reset(); status.textContent=t.sent; status.className='contact-status is-ok';
  }catch(problem){ status.textContent=t.fail; status.className='contact-status is-fail'; console.warn('FormSubmit',problem); }
- status.hidden=false; button.disabled=false; button.textContent=label;
+ clearTimeout(slow); status.hidden=false; button.disabled=false; button.textContent=label;
 });
 
 function render(){
