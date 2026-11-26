@@ -187,7 +187,7 @@ function renderAbout(){
   '<a href="https://br.linkedin.com/in/saulomoraisarquiteto" target="_blank" rel="noopener">LinkedIn ↗</a></div></div></section>';
 }
 // Dados de contato: preencha aqui. Campo vazio = o cartão não aparece.
-const CONTACT={whatsapp:'(35) 99908-8020',phone:'',email:'saulomorais7@gmail.com',city:'',linkedin:'',instagram:'',web3key:'',form:'saulomorais7@gmail.com'};
+const CONTACT={whatsapp:'(35) 99908-8020',phone:'',email:'saulomorais7@gmail.com',city:'Rua Capitão Afonso Junqueira, 370, Centro, Poços de Caldas, Minas Gerais',linkedin:'',instagram:'',web3key:'',form:'saulomorais7@gmail.com'};
 // web3key: chave do Web3Forms (web3forms.com) — com ela o formulário envia direto para o Gmail. form: alternativa pelo FormSubmit (não ativou).
 const contactText={
  pt:{title:'Contato',intro:'Conte um pouco sobre o seu projeto: tipo de projeto, de imagem ou serviço, prazo e onde fica. A resposta costuma sair no mesmo dia útil.',
