@@ -474,3 +474,8 @@ body.services-page main h1{font-family:var(--site-type);font-style:normal;font-w
 .contact-trap{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .contact-status{margin:0;font-size:15px}.contact-status.is-ok{color:#9fd8a6}.contact-status.is-fail{color:#f0a37d}
 .contact-actions button:disabled{opacity:.6;cursor:progress}
+.contact-cards{grid-template-columns:1fr;max-width:460px}
+.contact-card{display:grid;grid-template-columns:44px 1fr;column-gap:16px;align-items:center}
+.contact-card .contact-icon{grid-row:1 / span 2;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid #e8c39666;color:#e8c396}
+.contact-card .contact-icon svg{width:22px;height:22px}
+.contact-card .contact-icon.is-wa{color:#25d366;border-color:#25d36666}

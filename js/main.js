@@ -187,32 +187,37 @@ function renderAbout(){
   '<a href="https://br.linkedin.com/in/saulomoraisarquiteto" target="_blank" rel="noopener">LinkedIn ↗</a></div></div></section>';
 }
 // Dados de contato: preencha aqui. Campo vazio = o cartão não aparece.
-const CONTACT={whatsapp:'',phone:'',email:'saulomorais7@gmail.com',city:'',linkedin:'',instagram:'',form:'saulomorais7@gmail.com'}; // form: destino do FormSubmit (pode trocar pelo código que o FormSubmit enviar após a ativação)
+const CONTACT={whatsapp:'(35) 99908-8020',phone:'',email:'saulomorais7@gmail.com',city:'',linkedin:'',instagram:'',form:'saulomorais7@gmail.com'}; // form: destino do FormSubmit (pode trocar pelo código que o FormSubmit enviar após a ativação)
 const contactText={
  pt:{title:'Contato',intro:'Conte um pouco sobre o seu projeto: tipo de projeto, de imagem ou serviço, prazo e onde fica. A resposta costuma sair no mesmo dia útil.',
-  wa:'WhatsApp',tel:'Telefone',mail:'E-mail',loc:'Localização',remote:'Atendimento em todo o Brasil e no exterior, de forma remota.',
+  wa:'WhatsApp',tel:'Telefone',mail:'E-mail',loc:'Endereço',remote:'Atendimento em todo o Brasil e no exterior, de forma remota.',
   form:'Mande uma mensagem',name:'Nome',reply:'E-mail ou telefone para resposta',service:'Serviço',msg:'Mensagem',sendWa:'Enviar pelo WhatsApp',sendMail:'Enviar mensagem',sending:'Enviando…',sent:'Mensagem enviada! Obrigado pelo contato; a resposta chega em breve.',fail:'Não foi possível enviar agora. Tente de novo ou escreva para o e-mail ao lado.',
   services:['Perspectivas 3D','Plantas humanizadas','Filme de arquitetura','Master plan','Projeto de arquitetura','Projeto de interiores','Execução de obra','Modelagem 3D','Outro'],
   hello:'Olá, Saulo! Vim pelo site.',required:'Preencha o nome, um contato para resposta e a mensagem.'},
  en:{title:'Contact',intro:'Tell me a little about your project: type of project, image or service, deadline and location. Replies usually go out the same business day.',
-  wa:'WhatsApp',tel:'Phone',mail:'Email',loc:'Location',remote:'Working remotely with clients across Brazil and abroad.',
+  wa:'WhatsApp',tel:'Phone',mail:'Email',loc:'Address',remote:'Working remotely with clients across Brazil and abroad.',
   form:'Send a message',name:'Name',reply:'Email or phone for the reply',service:'Service',msg:'Message',sendWa:'Send via WhatsApp',sendMail:'Send message',sending:'Sending…',sent:'Message sent! Thank you for getting in touch; you will hear back soon.',fail:'The message could not be sent right now. Please try again or write to the email address alongside.',
   services:['3D renderings','Rendered floor plans','Architectural film','Master plan','Architectural design','Interior design','Construction','3D modeling','Other'],
   hello:'Hi Saulo! I found you through your website.',required:'Please fill in your name, a contact for the reply and your message.'},
  es:{title:'Contacto',intro:'Cuénteme un poco sobre su proyecto: tipo de proyecto, de imagen o servicio, plazo y ubicación. La respuesta suele salir el mismo día hábil.',
-  wa:'WhatsApp',tel:'Teléfono',mail:'Correo',loc:'Ubicación',remote:'Atención remota en todo Brasil y en el exterior.',
+  wa:'WhatsApp',tel:'Teléfono',mail:'Correo',loc:'Dirección',remote:'Atención remota en todo Brasil y en el exterior.',
   form:'Envíe un mensaje',name:'Nombre',reply:'Correo o teléfono para la respuesta',service:'Servicio',msg:'Mensaje',sendWa:'Enviar por WhatsApp',sendMail:'Enviar mensaje',sending:'Enviando…',sent:'¡Mensaje enviado! Gracias por el contacto; la respuesta llegará pronto.',fail:'No fue posible enviar ahora. Inténtelo de nuevo o escriba al correo indicado.',
   services:['Perspectivas 3D','Plantas humanizadas','Película de arquitectura','Master plan','Proyecto de arquitectura','Proyecto de interiores','Ejecución de obra','Modelado 3D','Otro'],
   hello:'¡Hola, Saulo! Llegué a través de su sitio.',required:'Complete su nombre, un contacto para la respuesta y el mensaje.'}};
-const digits=value=>(value||'').replace(/\D/g,'');
+const digits=value=>{const d=(value||'').replace(/\D/g,'');return d&&d.length<=11?'55'+d:d}; // número brasileiro sem DDI ganha o 55
 function renderContact(){
  const t=contactText[language]||contactText.pt, c=CONTACT;
- const card=(label,value,href,ext)=>value?'<a class="contact-card" href="'+href+'"'+(ext?' target="_blank" rel="noopener"':'')+'><span>'+label+'</span><strong>'+value+'</strong></a>':'';
+ const icons={
+  mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>',
+  wa:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.17-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.07.9.92-2.98-.2-.31a8.2 8.2 0 1 1 6.85 3.72Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.17.25-.64.8-.78.96-.14.17-.29.19-.53.07a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47a.9.9 0 0 0-.65.3 2.73 2.73 0 0 0-.85 2.03 4.74 4.74 0 0 0 1 2.52 10.86 10.86 0 0 0 4.16 3.67c1.55.67 2.16.73 2.93.61.47-.07 1.46-.6 1.66-1.17.21-.58.21-1.07.15-1.17-.06-.11-.22-.17-.47-.29Z"/></svg>',
+  home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v12h14V9"/><path d="M10 21v-6h4v6"/></svg>',
+  tel:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg>'};
+ const card=(label,value,href,ext,icon)=>value?'<a class="contact-card" href="'+href+'"'+(ext?' target="_blank" rel="noopener"':'')+'><i class="contact-icon'+(icon==='wa'?' is-wa':'')+'" aria-hidden="true">'+(icons[icon]||'')+'</i><span>'+label+'</span><strong>'+value+'</strong></a>':'';
  const cards=[
-  card(t.wa,c.whatsapp,'https://wa.me/'+digits(c.whatsapp)+'?text='+encodeURIComponent(t.hello),true),
-  card(t.tel,c.phone,'tel:+'+digits(c.phone)),
-  card(t.mail,c.email,'mailto:'+c.email),
-  card(t.loc,c.city,'https://www.google.com/maps/search/'+encodeURIComponent(c.city),true),
+  card(t.mail,c.email,'mailto:'+c.email,false,'mail'),
+  card(t.wa,c.whatsapp,'https://wa.me/'+digits(c.whatsapp)+'?text='+encodeURIComponent(t.hello),true,'wa'),
+  card(t.tel,c.phone,'tel:+'+digits(c.phone),false,'tel'),
+  card(t.loc,c.city,'https://www.google.com/maps/search/'+encodeURIComponent(c.city),true,'home'),
   card('LinkedIn',c.linkedin&&'saulomoraisarquiteto',c.linkedin,true),
   card('Instagram',c.instagram&&'@'+c.instagram.replace(/.*instagram\.com\/|\/$/g,''),c.instagram,true)].join('');
  return '<section class="wrap information-page contact-page"><h1>'+t.title+'</h1><div class="contact-layout"><div class="contact-info"><p class="contact-intro">'+t.intro+'</p><div class="contact-cards">'+cards+'</div><p class="contact-note">'+t.remote+'</p></div>'+
