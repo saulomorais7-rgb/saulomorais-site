@@ -109,6 +109,10 @@ const serviceEntries = [
   ['Desenhos técnicos e BIM','Plantas, cortes, elevações e detalhes com cotas e indicações de projeto. Modelos BIM com geometria e informações do edifício para documentação e compatibilização.'],
   ['Technical drawings and BIM','Dimensioned plans, sections, elevations and details with project annotations. BIM models combining building geometry and data for documentation and coordination.'],
   ['Dibujos técnicos y BIM','Plantas, secciones, alzados y detalles con cotas e indicaciones de proyecto. Modelos BIM con la geometría y los datos del edificio para documentación y coordinación.']],
+ ['M3 18h18v3H3v-3Zm2 0a7 7 0 0 1 14 0M10 11.5V6h4v5.5M9 6h6',
+  ['Execução de obra','Execução e acompanhamento da obra conforme o projeto: planejamento das etapas, orçamento, contratação e coordenação das equipes, e controle de prazos e de qualidade até a entrega.'],
+  ['Construction','Construction carried out according to the design: phase planning, budgeting, hiring and coordinating trades, and schedule and quality control through to handover.'],
+  ['Ejecución de obra','Ejecución y seguimiento de la obra según el proyecto: planificación de etapas, presupuesto, contratación y coordinación de equipos, y control de plazos y calidad hasta la entrega.']],
  ['M3 21h18M5 21V9l8-5v17m0-12 6 3v9M8 12h2m-2 4h2m6 0h1',
   ['Perspectivas','Imagens internas e externas. Internas: enquadramento, iluminação, mobiliário e materiais que mostram a escala e a atmosfera de cada ambiente. Externas: fachadas, acessos e a relação do edifício com a rua e a paisagem.'],
   ['Renderings','Interior and exterior images. Interiors: framing, lighting, furniture and materials that convey the scale and atmosphere of each room. Exteriors: façades, entrances and the building’s relationship to the street and landscape.'],
@@ -182,6 +186,65 @@ function renderAbout(){
   paragraphs.map(paragraph=>'<p>'+paragraph+'</p>').join('')+
   '<a href="https://br.linkedin.com/in/saulomoraisarquiteto" target="_blank" rel="noopener">LinkedIn ↗</a></div></div></section>';
 }
+// Dados de contato: preencha aqui. Campo vazio = o cartão não aparece.
+const CONTACT={whatsapp:'',phone:'',email:'saulomorais7@gmail.com',city:'',linkedin:'',instagram:'',form:'saulomorais7@gmail.com'}; // form: destino do FormSubmit (pode trocar pelo código que o FormSubmit enviar após a ativação)
+const contactText={
+ pt:{title:'Contato',intro:'Conte um pouco sobre o seu projeto: tipo de projeto, de imagem ou serviço, prazo e onde fica. A resposta costuma sair no mesmo dia útil.',
+  wa:'WhatsApp',tel:'Telefone',mail:'E-mail',loc:'Localização',remote:'Atendimento em todo o Brasil e no exterior, de forma remota.',
+  form:'Mande uma mensagem',name:'Nome',reply:'E-mail ou telefone para resposta',service:'Serviço',msg:'Mensagem',sendWa:'Enviar pelo WhatsApp',sendMail:'Enviar mensagem',sending:'Enviando…',sent:'Mensagem enviada! Obrigado pelo contato; a resposta chega em breve.',fail:'Não foi possível enviar agora. Tente de novo ou escreva para o e-mail ao lado.',
+  services:['Perspectivas 3D','Plantas humanizadas','Filme de arquitetura','Master plan','Projeto de arquitetura','Projeto de interiores','Execução de obra','Modelagem 3D','Outro'],
+  hello:'Olá, Saulo! Vim pelo site.',required:'Preencha o nome, um contato para resposta e a mensagem.'},
+ en:{title:'Contact',intro:'Tell me a little about your project: type of project, image or service, deadline and location. Replies usually go out the same business day.',
+  wa:'WhatsApp',tel:'Phone',mail:'Email',loc:'Location',remote:'Working remotely with clients across Brazil and abroad.',
+  form:'Send a message',name:'Name',reply:'Email or phone for the reply',service:'Service',msg:'Message',sendWa:'Send via WhatsApp',sendMail:'Send message',sending:'Sending…',sent:'Message sent! Thank you for getting in touch; you will hear back soon.',fail:'The message could not be sent right now. Please try again or write to the email address alongside.',
+  services:['3D renderings','Rendered floor plans','Architectural film','Master plan','Architectural design','Interior design','Construction','3D modeling','Other'],
+  hello:'Hi Saulo! I found you through your website.',required:'Please fill in your name, a contact for the reply and your message.'},
+ es:{title:'Contacto',intro:'Cuénteme un poco sobre su proyecto: tipo de proyecto, de imagen o servicio, plazo y ubicación. La respuesta suele salir el mismo día hábil.',
+  wa:'WhatsApp',tel:'Teléfono',mail:'Correo',loc:'Ubicación',remote:'Atención remota en todo Brasil y en el exterior.',
+  form:'Envíe un mensaje',name:'Nombre',reply:'Correo o teléfono para la respuesta',service:'Servicio',msg:'Mensaje',sendWa:'Enviar por WhatsApp',sendMail:'Enviar mensaje',sending:'Enviando…',sent:'¡Mensaje enviado! Gracias por el contacto; la respuesta llegará pronto.',fail:'No fue posible enviar ahora. Inténtelo de nuevo o escriba al correo indicado.',
+  services:['Perspectivas 3D','Plantas humanizadas','Película de arquitectura','Master plan','Proyecto de arquitectura','Proyecto de interiores','Ejecución de obra','Modelado 3D','Otro'],
+  hello:'¡Hola, Saulo! Llegué a través de su sitio.',required:'Complete su nombre, un contacto para la respuesta y el mensaje.'}};
+const digits=value=>(value||'').replace(/\D/g,'');
+function renderContact(){
+ const t=contactText[language]||contactText.pt, c=CONTACT;
+ const card=(label,value,href,ext)=>value?'<a class="contact-card" href="'+href+'"'+(ext?' target="_blank" rel="noopener"':'')+'><span>'+label+'</span><strong>'+value+'</strong></a>':'';
+ const cards=[
+  card(t.wa,c.whatsapp,'https://wa.me/'+digits(c.whatsapp)+'?text='+encodeURIComponent(t.hello),true),
+  card(t.tel,c.phone,'tel:+'+digits(c.phone)),
+  card(t.mail,c.email,'mailto:'+c.email),
+  card(t.loc,c.city,'https://www.google.com/maps/search/'+encodeURIComponent(c.city),true),
+  card('LinkedIn',c.linkedin&&'saulomoraisarquiteto',c.linkedin,true),
+  card('Instagram',c.instagram&&'@'+c.instagram.replace(/.*instagram\.com\/|\/$/g,''),c.instagram,true)].join('');
+ return '<section class="wrap information-page contact-page"><h1>'+t.title+'</h1><div class="contact-layout"><div class="contact-info"><p class="contact-intro">'+t.intro+'</p><div class="contact-cards">'+cards+'</div><p class="contact-note">'+t.remote+'</p></div>'+
+  '<form class="contact-form" novalidate><h2>'+t.form+'</h2>'+
+  '<label>'+t.name+'<input name="name" autocomplete="name" required></label>'+
+  '<label>'+t.reply+'<input name="reply" autocomplete="email" required></label>'+
+  '<label>'+t.service+'<select name="service">'+t.services.map(s=>'<option>'+s+'</option>').join('')+'</select></label>'+
+  '<label>'+t.msg+'<textarea name="msg" rows="5" required></textarea></label>'+
+  '<input type="text" name="_honey" class="contact-trap" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+  '<p class="contact-error" role="alert" hidden>'+t.required+'</p><p class="contact-status" role="status" hidden></p>'+
+  '<div class="contact-actions">'+(c.form?'<button type="submit" value="mail">'+t.sendMail+'</button>':'')+(c.whatsapp?'<button type="submit" value="wa" class="'+(c.form?'is-secondary':'')+'">'+t.sendWa+'</button>':'')+'</div></form></div></section>';
+}
+document.addEventListener('submit',async event=>{
+ const form=event.target.closest('.contact-form'); if(!form)return; event.preventDefault();
+ const t=contactText[language]||contactText.pt, f=new FormData(form), via=event.submitter?.value||'mail';
+ const error=form.querySelector('.contact-error'), status=form.querySelector('.contact-status');
+ if(!f.get('name').trim()||!f.get('reply').trim()||!f.get('msg').trim()){error.hidden=false;return} error.hidden=true;
+ if(f.get('_honey'))return;
+ const text=t.hello+'\n\n'+t.name+': '+f.get('name')+'\n'+t.service+': '+f.get('service')+'\n'+t.reply+': '+f.get('reply')+'\n\n'+f.get('msg');
+ if(via==='wa'){window.open('https://wa.me/'+digits(CONTACT.whatsapp)+'?text='+encodeURIComponent(text),'_blank','noopener');return}
+ const button=event.submitter||form.querySelector('button[value=mail]'), label=button.textContent;
+ button.disabled=true; button.textContent=t.sending; status.hidden=true;
+ try{
+  const response=await fetch('https://formsubmit.co/ajax/'+CONTACT.form,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+   body:JSON.stringify({[t.name]:f.get('name'),[t.reply]:f.get('reply'),[t.service]:f.get('service'),[t.msg]:f.get('msg'),
+    _subject:'Site saulomorais.com · '+f.get('service')+' · '+f.get('name'),_replyto:/@/.test(f.get('reply'))?f.get('reply'):undefined,_template:'table',_captcha:'false'})});
+  const result=await response.json().catch(()=>({}));
+  if(!response.ok||String(result.success)==='false')throw new Error(result.message||response.status);
+  form.reset(); status.textContent=t.sent; status.className='contact-status is-ok';
+ }catch(problem){ status.textContent=t.fail; status.className='contact-status is-fail'; console.warn('FormSubmit',problem); }
+ status.hidden=false; button.disabled=false; button.textContent=label;
+});
 
 function render(){
  const raw=location.hash.slice(1); const id=(raw==='trabalhos'?'projetos':raw)||'home'; document.body.classList.toggle('home',id==='home'); document.body.classList.toggle('work-page',id==='projetos'); document.body.classList.toggle('services-page',id==='servicos'); document.body.classList.toggle('about-page',id==='sobre'); document.body.classList.toggle('blog-page',id==='blog'); setBackdrop('film-22'); document.body.classList.toggle('archviz-page',id==='archviz'); const i=work.findIndex(row=>row[0]===id);
@@ -194,6 +257,7 @@ function render(){
  else if(id==='projetos') page=workIndex();
  else if(id==='sobre') page=renderAbout();
  else if(id==='servicos') page=renderServices();
+ else if(id==='contato') page=renderContact();
  else if(id==='blog') page=wrap('04 / Blog · Textos de estreia','Blog','<details class="article"><summary>O que uma planta humanizada ajuda a decidir</summary><p>Experimente comparar duas opções de layout com o mobiliário na mesma escala. Uma mesa pode caber nas duas, mas a circulação muda quando as cadeiras estão em uso. A planta humanizada torna essa diferença visível antes de avançar para a perspectiva.</p></details><details class="article"><summary>Como escolher a primeira câmera de uma fachada</summary><p>Uma vista ao nível da rua mostra como se chega ao edifício. Uma vista mais alta explica como ele ocupa o terreno. A primeira imagem pode responder à pergunta que mais importa naquela etapa do projeto.</p></details>');
  else if(id==='archviz'){
   page='<section class="wrap archviz-stage"><div class="archviz-opening">'+photo(covers.archviz,'hero-image','eager')+
@@ -218,7 +282,7 @@ const dictionary=new Map([
  ['Arquitetura.','Architecture.'],['Visualização','Visualization'],['em 3D.','in 3D.'],
  ['Projetos de arquitetura, storytelling e marketing imobiliário para apresentar e vender espaços.','Architectural design, storytelling and real estate marketing to present and sell spaces.'],
  ['Explorar trabalhos ','Explore work '],['Em breve','Coming soon'],['Pausar movimento','Pause motion'],['Retomar movimento','Resume motion'],['Arraste ou use as setas para trocar a imagem','Drag or use the arrow keys to change the image'],['Trabalhos','Work'],['← Voltar a Trabalhos','← Back to Work'],['Vista aérea urbana','Urban aerial view'],['← Voltar a Archviz','← Back to Archviz'],['Perspectiva externa','Exterior rendering'],['Perspectiva interna','Interior rendering'],['Imagem do acervo','Portfolio image'],['Perspectiva externa · imagem do acervo','Exterior rendering · portfolio image'],
-['Projetos','Projects'],['Projetos ↗','Projects ↗'],['Sobre','About'],['Sobre ↗','About ↗'],['Serviços','Services'],['Voltar ao início ↑','Back to top ↑'],['Arquiteto e urbanista','Architect and urban planner'],
+['Projetos','Projects'],['Projetos ↗','Projects ↗'],['Sobre','About'],['Sobre ↗','About ↗'],['Serviços','Services'],['Contato','Contact'],['Contato ↗','Contact ↗'],['Voltar ao início ↑','Back to top ↑'],['Arquiteto e urbanista','Architect and urban planner'],
 ['Saulo Morais · Arquiteto e urbanista','Saulo Morais · Architect and urban planner'],['Arquitetura','Architecture'],['em cena.','in focus.'],['Explorar Projetos ↗','Explore Projects ↗'],['Ver cena ⤢','View scene ⤢'],['Acender a luz ☼','Lights on ☼'],['Apagar a luz ☾','Lights off ☾'],
 ['01 / Estudo visual','01 / Visual study'],['Imagem conceitual gerada para o protótipo','Concept image generated for this prototype'],['01 / Portfólio','01 / Portfolio'],['Portfólio','Portfolio'],['Projeto','Design'],['Arquitetura e interiores','Architecture and interiors'],['Imagens e filmes','Images and films'],['Modelagem','3D modeling'],['Edifícios e objetos','Buildings and objects'],['Movimento','Motion'],
 ['Montagem conceitual · recortes da cena de abertura','Concept montage · crops from the opening scene'],['Imagens conceituais · acervo a selecionar','Concept images · portfolio selection pending'],['Estudo visual · imagem conceitual','Visual study · concept image'],['Fechar ×','Close ×'],
@@ -248,7 +312,7 @@ const spanish=new Map(Object.entries({
  'Architecture.':'Arquitectura.','Visualization':'Visualización','in 3D.':'en 3D.',
  'Architectural design, storytelling and real estate marketing to present and sell spaces.':'Proyectos de arquitectura, storytelling y marketing inmobiliario para presentar y vender espacios.',
  'Explore work ':'Explorar trabajos ','Coming soon':'Próximamente','Pause motion':'Pausar movimiento','Resume motion':'Reanudar movimiento',
- 'Drag or use the arrow keys to change the image':'Arrastra o usa las flechas para cambiar la imagen','Home':'Inicio','Work':'Trabajos','← Back to Work':'← Volver a Trabajos','Projects':'Proyectos','Projects ↗':'Proyectos ↗','About':'Sobre mí','About ↗':'Sobre mí ↗','Services':'Servicios','Back to top ↑':'Volver al inicio ↑',
+ 'Drag or use the arrow keys to change the image':'Arrastra o usa las flechas para cambiar la imagen','Home':'Inicio','Work':'Trabajos','← Back to Work':'← Volver a Trabajos','Projects':'Proyectos','Projects ↗':'Proyectos ↗','About':'Sobre mí','About ↗':'Sobre mí ↗','Services':'Servicios','Contact':'Contacto','Contact ↗':'Contacto ↗','Back to top ↑':'Volver al inicio ↑',
  'Architect and urban planner':'Arquitecto y urbanista','Saulo Morais · Architect and urban planner':'Saulo Morais · Arquitecto y urbanista',
  'Architecture':'Arquitectura','in focus.':'en escena.','Explore Projects ↗':'Explorar proyectos ↗','View scene ⤢':'Ver escena ⤢','Lights on ☼':'Encender la luz ☼','Lights off ☾':'Apagar la luz ☾',
  '01 / Visual study':'01 / Estudio visual','Portfolio image':'Imagen del portafolio','Portfolio':'Portafolio','Design':'Diseño',
