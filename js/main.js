@@ -47,6 +47,9 @@ Object.entries(curatedOut).forEach(([c,out])=>{const s=new Set(out);selections[c
 // Fotos que ele pediu no topo da galeria (na ordem)
 const promoted={externas:["w56","w99"]};
 Object.entries(promoted).forEach(([c,top])=>{selections[c]=[...top,...selections[c].filter(k=>!top.includes(String(k)))]});
+// Fotos movidas para o meio da galeria
+const toMiddle={internas:["w29"]};
+Object.entries(toMiddle).forEach(([c,keys])=>{const rest=selections[c].filter(k=>!keys.includes(String(k)));const m=Math.floor(rest.length/2);selections[c]=[...rest.slice(0,m),...keys,...rest.slice(m)]});
 // Projetos (vindos da página "Architectural Design" do Wix, na mesma ordem de lá).
 selections.arquitetura=["w99","w104","w105","w103","w118","w119","w113","w112","w135","w138","w117","w140","w139","w146","w145","w136","w97","w96","w98","w143"];
 selections.interiores=["w89","w93","w92","w95","w91","w94","w142","w153","w154","w155","w156","w160","w161","w162","w163","w217","w164","w165","w218"];
